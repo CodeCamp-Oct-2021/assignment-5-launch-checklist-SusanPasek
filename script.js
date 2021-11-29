@@ -9,26 +9,28 @@ window.addEventListener("load", function() {
    let fuelStatus = document.getElementById("fuelStatus");
    let cargoStatus = document.getElementById("cargoStatus"); 
  
-   let pilotName = document.querySelector("input[name=pilotName]");
-   let coPilotName = document.querySelector("input[name=copilotName]");
-   let fuelAmt = document.querySelector("input[name=fuelLevel]");
-   let cargoMass = document.querySelector("input[name=cargoMass]");
-     
+   
    form.addEventListener("submit", function(event) {
        event.preventDefault();
-       let validPilot = validateInput(pilotName);
-       let validCoPilot = validateInput(coPilotName);
-       let validFuelLevel = validateInput(fuelAmt);
-       let validCargoMass = validateInput(cargoMass);
-       if (validPilot === "" || validCoPilot === "" ||
-           validFuelLevel === "" || validCargoMass === "" ) {
+       let pilotName = document.querySelector("input[name=pilotName]").value;
+       let coPilotName = document.querySelector("input[name=copilotName]").value;
+       let fuelAmt = document.querySelector("input[name=fuelLevel]").value;
+       let cargoMass = document.querySelector("input[name=cargoMass]").value;
+         
+       if (pilotName === "" || coPilotName === "" ||
+           fuelAmt === "" || cargoMass === "" ) {
                alert("All fields are required");
               // event.preventDefault();
-       };
-       let validArr = [validPilot, validCoPilot, validFuelLevel, validCargoMass];
+       }else if (!isNaN(pilotName)|| !isNaN(coPilotName)|| isNaN(fuelAmt) || isNaN(cargoMass)) {
+         alert("input valid data")
+       }
+       else {
+         let validArr = [pilotName, coPilotName, fuelAmt, cargoMass];
       
-       formSubmission(faultyList, validArr, pilotStatus, coPilotStatus, fuelStatus, cargoStatus);
-       event.preventDefault();
+         formSubmission(document, faultyList, pilotStatus, coPilotStatus, fuelStatus, cargoStatus, validArr);
+       }
+      
+       
    });
 
    

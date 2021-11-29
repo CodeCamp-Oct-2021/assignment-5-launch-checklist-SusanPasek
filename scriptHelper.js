@@ -30,24 +30,24 @@ function validateInput(testInput) {
     return testInput.value;
 }
 
-function formSubmission(mydocument, list, pilot, copilot, fuelLevel, cargoLevel) {
-        mydocument.style.visibility = 'visible';
+function formSubmission(document, list, pilot, copilot, fuelStatus, cargoStatus, validArr) {
+       list.style.visibility = 'visible';
         let header2 = document.getElementById("launchStatus");
-        pilot.innerHTML = `Pilot ${list[0]} is ready for launch`; 
-        copilot.innerHTML = `coPilot ${list[1]} is ready for launch`; 
-        if(list[2] < 10000) {
-            fuelLevel.innerHTML = "Fuel level too low for launch";  
+        pilot.innerHTML = `Pilot ${validArr[0]} is ready for launch`; 
+        copilot.innerHTML = `coPilot ${validArr[1]} is ready for launch`; 
+        if(validArr[2] < 10000) {
+            fuelStatus.innerHTML = "Fuel level too low for launch";  
         } else {
-            fuelLevel.innerHTML = `Fuel level ${list[2]} is ready for launch`;
+            fuelStatus.innerHTML = `Fuel level ${validArr[2]} is ready for launch`;
         }
 
-        if (list[3] > 10000) {
-            cargoLevel.innerHTML = "too much mass for the shuttle to take off";  
+        if (validArr[3] > 10000) {
+            cargoStatus.innerHTML = "too much mass for the shuttle to take off";  
         } else {
-            cargoLevel.innerHTML = `Cargo Mass ${list[3]} is ready for launch`;
+            cargoStatus.innerHTML = `Cargo Mass ${validArr[3]} is ready for launch`;
         }
 
-        if (list[2] < 10000 || list[3] > 10000){
+        if (validArr[2] < 10000 || validArr[3] > 10000){
             header2.innerHTML = "Shuttle not ready for launch"; 
             header2.style.color = "red";
         } else {
